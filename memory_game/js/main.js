@@ -40,10 +40,26 @@ suit:"diamonds",
 cardImage:"images/king-of-diamonds.png"
 }
 ];
+var score=0;
 let cardsInPlay=[];
+document.getElementById('score').innerHTML =  score;
+function createBoard()
+{
+//	document.getElementById('score').innerHTML =  score;
+	for(let i=0;i<cards.length;i++)
+	{
+		let cardElement=document.createElement('img');
+		cardElement.setAttribute('src','images/back.png');
+		cardElement.setAttribute('data-id',i);
+		document.getElementById("game-board").appendChild(cardElement);
+		cardElement.addEventListener('click',flipCard);
+		
+	}
+}
 //function to check for match
 function checkForMatch()
 {
+
 	if(cardsInPlay.length<2)
 	{
 
@@ -52,19 +68,29 @@ function checkForMatch()
 		if(cardsInPlay[0]===cardsInPlay[1])
 		{
 			alert("You found a match!");
+			score++;
+			resetCard();
+			cardsInPlay=[];
+			document.getElementById('score').innerHTML =  score;
 		}else
 		{
 			alert("Try again!");
+			cardsInPlay=[];
+			createBoard();
 		}
 		}		
 }
 //function to check which card is picked
-function flipCard(cardID)
-{
+function flipCard()
+{	
+	
+	let cardID=this.getAttribute('data-id');
+	//to check how to avoid duplpicate
 	console.log("User flipped "+ cards[cardID].rank);
 	cardsInPlay.push(cards[cardID].rank);
-	console.log(cards[cardID].cardImage);
-	console.log(cards[cardID].suit);
+	this.setAttribute('src',cards[cardID].cardImage);
+	//console.log(cards[cardID].cardImage);
+	//console.log(cards[cardID].suit);
 	checkForMatch();
 	
 	/*let cardOne=cards[0];
@@ -76,6 +102,26 @@ function flipCard(cardID)
 	console.log("User flipped " + cardTwo);*/
 
 }
+function resetCard()
+{
+	for(let i=0;i<cards.length;i++)
+	{
+		//find out how to reset the cards
+		console.log("resetting cards");
+		
+		
+	}
+}
+function Reset() {
+  //alert("Hi");
+  var x = document.getElementById("Reset");
+  x.onclick=reloadPage();
+  
+}
+function reloadPage(){
+   window.location.reload();
+}
+//flipCard(0);
+//flipCard(2);
+createBoard();
 
-flipCard(0);
-flipCard(2);
