@@ -17,7 +17,29 @@ if(cardsInPlay.length===2)
 
 
 }*/
-let cards=["queen", "queen", "king", "king"]
+//let cards=["queen", "queen", "king", "king"]
+const cards=[
+{//card 1
+rank:"queen",
+suit:"hearts",
+cardImage:"images/queen-of-hearts.png"
+},
+{//card 2
+rank:"queen",
+suit:"diamonds",
+cardImage:"images/queen-of-diamonds.png"
+},
+{//card 3
+rank:"king",
+suit:"hearts",
+cardImage:"images/king-of-hearts.png"
+},
+{//card 4
+rank:"king",
+suit:"diamonds",
+cardImage:"images/king-of-diamonds.png"
+}
+];
 let cardsInPlay=[];
 //function to check for match
 function checkForMatch()
@@ -29,18 +51,20 @@ function checkForMatch()
 	else{
 		if(cardsInPlay[0]===cardsInPlay[1])
 		{
-			console.log("You found a match!");
+			alert("You found a match!");
 		}else
 		{
-			console.log("Try again!");
+			alert("Try again!");
 		}
 		}		
 }
 //function to check which card is picked
 function flipCard(cardID)
 {
-	console.log("User flipped "+ cards[cardID]);
-	cardsInPlay.push(cards[cardID]);
+	console.log("User flipped "+ cards[cardID].rank);
+	cardsInPlay.push(cards[cardID].rank);
+	console.log(cards[cardID].cardImage);
+	console.log(cards[cardID].suit);
 	checkForMatch();
 	
 	/*let cardOne=cards[0];
